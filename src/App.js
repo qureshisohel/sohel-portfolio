@@ -330,20 +330,22 @@ const Navbar = () => {
 };
 
 // ==================== HERO SECTION (WITH DOWNLOAD BUTTON) ====================
+// ==================== HERO SECTION (FIXED FOR VERCEL) ====================
 const Hero = () => {
-  const roles = [
-    "AI/ML Developer",
-    "Full Stack Developer",
-    "Computer Vision Enthusiast",
-    "Software Engineer",
-    "Web Developer"
-  ];
-
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
+    // ✅ roles ko ANDAR move karo
+    const roles = [
+      "AI/ML Developer",
+      "Full Stack Developer",
+      "Computer Vision Enthusiast",
+      "Software Engineer",
+      "Web Developer"
+    ];
+    
     const current = roles[currentRole];
     let timeout;
 
@@ -362,7 +364,7 @@ const Hero = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentRole, roles]);
+  }, [displayText, isDeleting, currentRole]); // ✅ dependencies sahi karo
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950 pt-20">
@@ -413,7 +415,7 @@ const Hero = () => {
         <motion.div initial={{ opacity: 0, y: 50 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, delay: 0.1 }}>
           <h1 className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 px-2">
             <span className="bg-gradient-to-r from-blue-400 via-purple-500 to-pink-500 bg-clip-text text-transparent">
-              QURESHI MOHAMMADSOHEL
+              QURESHI MOHAMMAD SOHEL
             </span>
           </h1>
         </motion.div>
@@ -482,11 +484,10 @@ const Hero = () => {
             🚀 View Projects
           </motion.a>
           
-          {/* NEW DOWNLOAD RESUME BUTTON */}
           <motion.a 
             whileHover={{ scale: 1.05 }} 
             whileTap={{ scale: 0.95 }} 
-            href="sohel_cv.pdf"
+            href="/sohel_cv.pdf"
             download="Qureshi_Mohammad_Sohel_Resume.pdf"
             className="px-6 sm:px-8 py-3 bg-gradient-to-r from-green-500 to-teal-600 rounded-full font-semibold text-white hover:shadow-lg hover:shadow-green-500/25 transition-all text-sm sm:text-base flex items-center gap-2"
           >
