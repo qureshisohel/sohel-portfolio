@@ -330,14 +330,13 @@ const Navbar = () => {
 };
 
 // ==================== HERO SECTION (WITH DOWNLOAD BUTTON) ====================
-// ==================== HERO SECTION (FIXED FOR VERCEL) ====================
+// ==================== HERO SECTION (FIXED) ====================
 const Hero = () => {
   const [currentRole, setCurrentRole] = useState(0);
   const [displayText, setDisplayText] = useState('');
   const [isDeleting, setIsDeleting] = useState(false);
 
   useEffect(() => {
-    // ✅ roles ko ANDAR move karo
     const roles = [
       "AI/ML Developer",
       "Full Stack Developer",
@@ -364,7 +363,7 @@ const Hero = () => {
     }
 
     return () => clearTimeout(timeout);
-  }, [displayText, isDeleting, currentRole]); // ✅ dependencies sahi karo
+  }, [displayText, isDeleting, currentRole]);
 
   return (
     <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-950 pt-20">
@@ -396,7 +395,6 @@ const Hero = () => {
                 alt="Qureshi Mohammad Sohel"
                 className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full object-cover border-4 border-blue-500/50 shadow-2xl shadow-blue-500/30 relative z-10"
                 onError={(e) => {
-                  console.log("Image load failed, using fallback");
                   e.target.style.display = 'none';
                   if (e.target.nextSibling) {
                     e.target.nextSibling.style.display = 'flex';
@@ -468,7 +466,6 @@ const Hero = () => {
           ))}
         </motion.div>
 
-        {/* CTA Buttons with DOWNLOAD RESUME */}
         <motion.div 
           initial={{ opacity: 0, y: 30 }} 
           animate={{ opacity: 1, y: 0 }} 
